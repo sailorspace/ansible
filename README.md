@@ -123,7 +123,7 @@ e.g ansible localhost -m ping
 	ansible 192.168.211.102 -m copy -a "src=/home/vagrant/wick.txt dest=/temp/scripts/"
 	ansible 192.168.211.102 -m copy -a "src=/temp/test.txt dest=/temp/script/" -b //for any user not root -b mean become priviledged
 	
-Tagging in playbook tasks 
-#- ansible-playbook tag-multi-tasks.yml --list-tags //this lists all the tags in the playbook file 
-#- ansible-playbook tag-multi-tasks.yml -t inginx  //run a specific task based on the tag marking 
+-Tagging in playbook tasks 
+-#- ansible-playbook tag-multi-tasks.yml --list-tags //this lists all the tags in the playbook file 
+-#- ansible-playbook tag-multi-tasks.yml -t inginx  //run a specific task based on the tag marking 
 
