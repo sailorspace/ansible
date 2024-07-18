@@ -1,0 +1,19 @@
+---
+ - name: file module test 
+   hosts: all
+
+   tasks:
+   - name: creating a file
+     file: 
+      path: /temp/sanjay.txt 
+      state: touch
+      owner: vagrant
+      group: vagrant
+      mode: u=rwx,g=rw,o=r
+
+   - name: creating a directory
+     file: 
+      path: /temp/ballroom
+      state: directory
+
+

@@ -1,0 +1,10 @@
+---
+ - name: file module test 
+   hosts: all
+
+   tasks:
+   - name: creating a file
+     file: 
+      path: /temp/sanjay.txt 
+      state: absent
+      
