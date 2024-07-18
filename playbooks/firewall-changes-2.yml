@@ -1,11 +1,13 @@
 ---
 - name: do some fireewall changes
-  hosts: all 
+  hosts: all
+  become: true  # direction to execute this playbook as the priviledged user
+                # this can also be given at the task level if its task specific  
 
   tasks:
   - name: enable the service in the firewall 
     firewalld: 
-      service: nginx
+      port: 80/tcp 
       permanent: true 
       state: enabled   #enabled the service, any change in the fiewall needs reloading of the firewall 
 
