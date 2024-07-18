@@ -1,0 +1,11 @@
+---
+ - name: remove  a cron job 
+   hosts: all
+
+   tasks:
+   - name: remove  cron job 
+     cron: 
+      name: run testscript #the name of the cron jonb should match the one we created
+      state: absent #to remove the cron jon 
+      user: vagrant 
+      

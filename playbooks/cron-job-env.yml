@@ -1,0 +1,13 @@
+---
+ - name: remove  a cron job 
+   hosts: all
+
+   tasks:
+   - name: remove  cron job 
+     cron: 
+      name: PATH
+      env: yes
+      user: vagrant
+      job: /tmp/scripts
+      
+      

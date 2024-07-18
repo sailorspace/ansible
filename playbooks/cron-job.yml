@@ -1,0 +1,16 @@
+---
+ - name: running a cron job 
+   hosts: all
+
+   tasks:
+   - name: run first cron job 
+     cron: 
+      name: run testscript #same name has to be refered in case there is ymls or tasks to modify this job
+      minute: 40           #adding the tiem and date params for the cron job
+      hour: 01
+      day: 19
+      month: "*"
+      weekday: "*"
+      user: vagrant       #the cron job belongs for the user ..provide the owner
+      job: /temp/scripts/test.sh/  #what is the job of the cron , i.e to run this script here
+

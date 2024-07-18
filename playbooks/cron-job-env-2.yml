@@ -1,0 +1,14 @@
+---
+ - name: modify cron via env variable  a cron job 
+   hosts: all
+
+   tasks:
+   - name:  cron job 
+     cron: 
+      name: VAR                       # VAR environment variable is to be created if not exists
+      env: yes                        # yes in the evn
+      user: vagrant                   # for the user
+      job: /tmp/scripts/test.sh       # this is the value of the environment variable key VAR
+      insertbefore: PATH              # and it should come before the PATH variable, this should exist for it to work
+      
+      

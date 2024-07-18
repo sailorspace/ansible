@@ -5,9 +5,9 @@
    tasks:
     - name: task is to copy files 
       copy: 
-       src: /root/test.txt
-       dest: /temp/
-       owner: vagrant
-       mode: ugo=rw
-       backup: true
+       src: /root/test.txt  # path of this machine for the file
+       dest: /temp/         # where to copy in the destination machine 
+       owner: vagrant       # set the owner of the file 
+       mode: ugo=rw         # set the access mode 
+       backup: true         # do we want to create a backup everytime the file is modified 
 

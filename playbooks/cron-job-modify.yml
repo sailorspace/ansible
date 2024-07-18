@@ -1,0 +1,17 @@
+---
+ - name: modify  a cron job 
+   hosts: all
+
+   tasks:
+   - name: run first cron job 
+     cron: 
+      name: run testscript
+      minute: 20
+      hour: 01
+      day: 19
+      month: "*"
+      weekday: "*"
+      user: vagrant 
+      job: /temp/scripts/test.sh/
+      disabled: yes
+
