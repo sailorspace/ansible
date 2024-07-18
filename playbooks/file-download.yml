@@ -1,0 +1,12 @@
+---
+- name: file download at remote server
+  hosts: all 
+
+  tasks:
+  - name: download file 
+    get_url: 
+       url: https://images.pexels.com/photos/920382/pexels-photo-920382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+       dest: /temp/scripts/
+       owner: vagrant
+       group: vagrant 
+       mode: 0777

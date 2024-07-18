@@ -1,0 +1,15 @@
+---
+- name: do some fireewall changes
+  hosts: all 
+
+  tasks:
+  - name: enable the service in the firewall 
+    firewalld: 
+      service: nginx
+      permanent: true 
+      state: enabled   #enabled the service, any change in the fiewall needs reloading of the firewall 
+
+  - name: firewall restart after nginx modified and enabled
+    service:
+       name:  firewalld 
+       state: reloaded 
