@@ -1,0 +1,16 @@
+---
+  - name: this is first playbook  
+    hosts: 192.168.211.102        
+    tasks: 
+    - name: install package     
+      apt:                  
+       name: nginx           
+       state: present
+      tags: i-nginx          # adding a tag so that we run run tag scoped playbook not every task
+
+    - name: start the service    
+      service: 
+       name: nginx        
+       state: started            
+       enabled: true
+      tags: e-nginx        # tagging here to mark the niginx start and enablie       
