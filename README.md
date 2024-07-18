@@ -1,5 +1,4 @@
 # ansible
-# ansible
 module -> smallest task that you have 
 inventory -> information about tasks in the servers 
 playbook -> task that you want to perform 
