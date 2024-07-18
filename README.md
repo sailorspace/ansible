@@ -6,6 +6,9 @@ playbook -> task that you want to perform
 Main Server(101-Orca) Ansible -> Access other servers(remote) without password 
                              #-> ssh-keygen //use this to generate a keygen 
                              #-> ssh-copy-id 192.168.211.102 //to copy the id to remoteserver
+							 #-> ssh-copy-id vagrant@192.168.211.102 //for using current user as permissioned to remote
+							     //mostly this is the case, create a new ssh-keygen for each user access 
+						     
                               -> this will ask the password for one time to set things in remote server(102 here)
                               -> the key/certificate generated is copied to the remote server 
                               -> now ssh from main server to any machine will work without asking password 
@@ -110,3 +113,17 @@ e.g https://docs.ansible.com/ansible/2.9/modules/service_module.html#service-mod
   - ansible 192.168..211.102 -m ping //check if our specific target is all good with ansible making contact
   - finally run the playbook ansible-playbook <playbook>.yml 
 - when there is any change in runnning the playbook the changes will be shown
+
+Ad-Hoc commands in ansible
+- ansible <host-pattern> -m <modulename> -a <module arguments> 
+e.g ansible localhost -m ping
+    ansible all -m ping 
+	ansible 192.168.211.102 -m ping
+	ansible webserver -m ping //pinging all the servers under the group webserver
+	ansible 192.168.211.102 -m copy -a "src=/home/vagrant/wick.txt dest=/temp/scripts/"
+	ansible 192.168.211.102 -m copy -a "src=/temp/test.txt dest=/temp/script/" -b //for any user not root -b mean become priviledged
+	
+Tagging in playbook tasks 
+#- ansible-playbook tag-multi-tasks.yml --list-tags //this lists all the tags in the playbook file 
+#- ansible-playbook tag-multi-tasks.yml -t inginx  //run a specific task based on the tag marking 
+
