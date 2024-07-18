@@ -4,5 +4,5 @@
 
    tasks: 
    - name: run script
-     shell:  /temp/scripts/test.sh
+     shell:  /temp/scripts/test.sh #shell module is used to run a script on target machine 
 

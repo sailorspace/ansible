@@ -4,9 +4,9 @@
 
    tasks: 
    - name: run script
-     shell: ./test.sh >> test.log 
+     shell: ./test.sh >> test.log #providing the path for the script and to direct it to forward the prints to log file 
      args:
-        chdir: /temp/scripts/
-        creates: test.log 
+        chdir: /temp/scripts/     #providing the argument to where to create the result or run  
+        creates: test.log         #making sure that the log file exists and is created if not
 
 
