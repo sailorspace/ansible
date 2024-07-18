@@ -10,6 +10,12 @@
        home: /home/nidhi   #home directory of the user
        shell: /bin/bash    #user shell 
        groups: nidhi, f1005 #user group it belongs to , for single group it should be group:nidhi,
-       #by default the user gets added to the group name same as the username if not specified 
+       #by default the user gets added to the group name same as the username if not specified
+
+   - name: set the password for the user created #next task to add the password and policy
+     user: 
+      name: nidhi 
+      update_password: always #can also be oncreate as policy application  
+      password: "{{'pass123' | password_hash('sha512') }}"  #password needs to be hashed, we cant provide the text format 
 
 

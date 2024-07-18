@@ -1,13 +1,13 @@
 ---
-  - name: this is first playbook 
-    hosts: 192.168.211.102 
+  - name: this is first playbook #playbook domain intent description 
+    hosts: 192.168.211.102       #Target machine that the playbook is for 
     tasks: 
-    - name: install package   
-      apt:                   
-       name: nginx         
-       state: present     
-    - name: start the service 
+    - name: install package  #description of the task we will be performing    
+      apt:                   #module name 
+       name: nginx           #app service name 
+       state: present        #what the sate of the service should be turned , here it is install, present means install if not there
+    - name: start the service    #next task is to run the service after installation 
       service: 
-       name: nginx     
-       state: started 
-       enabled: true 
+       name: nginx               #which service , its nginx
+       state: started            #leave the state as active and enabled , this is what we tell the ensible engine to do 
+       enabled: true             #to enable if not as mentioned above 
