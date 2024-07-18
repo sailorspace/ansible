@@ -1,0 +1,13 @@
+---
+  - name: this is first playbook 
+    hosts: 192.168.211.102 
+    tasks: 
+    - name: install package   
+      apt:                   
+       name: nginx         
+       state: present     
+    - name: start the service 
+      service: 
+       name: nginx     
+       state: started 
+       enabled: true 
