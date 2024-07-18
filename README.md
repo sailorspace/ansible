@@ -43,9 +43,8 @@ config file = /etc/ansible/ansible.cfg
   //on ansible installation the config file is empty without any settings
 - mkdir playbooks -> cd playbooks  //playbok can be made at any directory
 - nano first-pb.yml //create a playbook 
-  vi <filename>.yml //to enter in insert mode press "i"
-- every yml starts with "---" 
-- tasks are described by "-" in from e.g 
+- vi <filename>.yml //to enter in insert mode press "i"
+ #sample
   ---
   - name: this is first playbook 
     hosts: localhost //where to run the task..could be remote server, this mean we are pointing the localhost 
