@@ -1,0 +1,8 @@
+---
+ - name: this is to run a remote script on target
+   hosts: all
+
+   tasks: 
+   - name: run script
+     shell:  /temp/scripts/test.sh
+

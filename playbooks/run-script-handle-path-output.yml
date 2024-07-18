@@ -1,0 +1,12 @@
+---
+ - name: this is to run a remote script on target
+   hosts: all
+
+   tasks: 
+   - name: run script
+     shell: ./test.sh >> test.log 
+     args:
+        chdir: /temp/scripts/
+        creates: test.log 
+
+
