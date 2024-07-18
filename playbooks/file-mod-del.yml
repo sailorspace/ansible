@@ -3,8 +3,12 @@
    hosts: all
 
    tasks:
-   - name: creating a file
+   - name: deleting  a file
      file: 
       path: /temp/sanjay.txt 
       state: absent
-      
+     
+   - name: delete the directory or folder
+     file:
+       path: /temp/ballroom 
+       state: absent 
