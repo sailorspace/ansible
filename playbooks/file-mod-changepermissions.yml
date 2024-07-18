@@ -1,0 +1,14 @@
+---
+ - name: file module test 
+   hosts: all
+
+   tasks:
+   - name: change existing permissions
+     file: 
+      path: /temp/permfile.txt 
+      mode: u=rwx,g=rw,o=r
+     
+   - name: change existing permissions to the directory or folder
+     file:
+       path: /temp/permfolder 
+       mode: ugo=rwx  
