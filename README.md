@@ -1,4 +1,5 @@
 # ansible
+# ansible
 module -> smallest task that you have 
 inventory -> information about tasks in the servers 
 playbook -> task that you want to perform 
@@ -28,10 +29,10 @@ Main Server(101-Orca) Ansible -> Access other servers(remote) without password
 # Installing Ansible :
 https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu
 
-$ sudo apt update
-$ sudo apt install software-properties-common
-$ sudo add-apt-repository --yes --update ppa:ansible/ansible
-$ sudo apt install ansible
+- sudo apt update
+- sudo apt install software-properties-common
+- sudo add-apt-repository --yes --update ppa:ansible/ansible
+- sudo apt install ansible
 
 
 config file = /etc/ansible/ansible.cfg
@@ -43,8 +44,8 @@ config file = /etc/ansible/ansible.cfg
   //on ansible installation the config file is empty without any settings
 - mkdir playbooks -> cd playbooks  //playbok can be made at any directory
 - nano first-pb.yml //create a playbook 
-- vi <filename>.yml //to enter in insert mode press "i"
- #sample
+  vi <filename>.yml //to enter in insert mode press "i"
+#sample
   ---
   - name: this is first playbook 
     hosts: localhost //where to run the task..could be remote server, this mean we are pointing the localhost 
@@ -125,4 +126,7 @@ e.g https://docs.ansible.com/ansible/2.9/modules/service_module.html#service-mod
 #Tagging in playbook tasks 
 - ansible-playbook tag-multi-tasks.yml --list-tags //this lists all the tags in the playbook file
 - ansible-playbook tag-multi-tasks.yml -t inginx  //run a specific task based on the tag marking 
+- ansible-playbook tag-multi-tasks.yml --skip-tags <tag-name-toskip> //this will skip all the tags mentioned and run others
+
+
 
