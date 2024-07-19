@@ -227,7 +227,9 @@ a structured way of grouping together various functionalities and making it reus
 	drwxr-xr-x 2 root root 4096 Jul 19 09:18 meta
 	drwxr-xr-x 2 root root 4096 Jul 19 09:18 handlers
 - cd tasks //get inside the tasks folder 
-https://cn-ansibledoc.readthedocs.io/zh-cn/latest/galaxy/user_guide.html
+- https://cn-ansibledoc.readthedocs.io/zh-cn/latest/galaxy/user_guide.html
+- https://galaxy.ansible.com/ui/
+
 
 
 
