@@ -1,0 +1,20 @@
+---
+- name: do some fireewall changes
+  hosts: all
+  become: true  # direction to execute this playbook as the priviledged user
+                # this can also be given at the task level if its task specific  
+
+  tasks:
+  - name: enable the service in the firewalld 
+    firewalld: 
+      port: 80/tcp 
+      permanent: true 
+      state: enabled   #enabled the service, any change in the fiewall needs reloading of the firewall
+    notify:
+      - reload firewalld  # this triggers the handlers i.e notifies the handler to run its tasks 
+
+  handlers:  # handlers are always triggerd when required 
+  - name: reload firewalld
+    service:
+       name:  firewalld 
+       state: reloaded 

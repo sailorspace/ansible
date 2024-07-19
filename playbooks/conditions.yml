@@ -1,0 +1,20 @@
+---
+- name: handling conditions based on the platform
+  hosts: all
+
+  tasks:
+  - name: install httpd on red hat 
+    yum: 
+     name: httpd
+     state: present
+    when: ansible_os_family == "RedHat" # meaning to run this task only when the target machine is of the family "Redhat"
+                                        # in this case ansible first makes contact with the target machine
+                                        # then runs command ansible_os_family to find the match else task is skipped
+
+
+  - name: install apche2 on ubuntu 
+    apt:
+      name: apache2
+      state: present 
+    when: ansible_os_family == "ubuntu"
+

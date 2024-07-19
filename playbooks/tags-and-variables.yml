@@ -1,0 +1,19 @@
+---
+  - name: this is first playbook  
+    hosts: 192.168.211.102 
+    vars: 
+     - app: nginx 
+         
+    tasks: 
+    - name: install package     
+      apt:                  
+       name: "{{app}}"          
+       state: present
+      tags: in-nginx          # adding a tag so that we run run tag scoped playbook not every task
+
+    - name: start the service    
+      service: 
+       name: "{{app}}"        
+       state: started            
+       enabled: true
+      tags: ss-nginx        # tagging here to mark the niginx start and enablie       
