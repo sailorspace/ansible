@@ -121,11 +121,84 @@ e.g https://docs.ansible.com/ansible/2.9/modules/service_module.html#service-mod
 	- ansible webserver -m ping //pinging all the servers under the group webserver
 	- ansible 192.168.211.102 -m copy -a "src=/home/vagrant/wick.txt dest=/temp/scripts/"
 	- ansible 192.168.211.102 -m copy -a "src=/temp/test.txt dest=/temp/script/" -b //for any user not root -b mean become priviledged
+	- ansible all -m service -a "name=nginx state=reloaded"
+	- ansible all -m shell -a "/temp/scripts/test.sh"
+	 	
 	
 #Tagging in playbook tasks 
 - ansible-playbook tag-multi-tasks.yml --list-tags //this lists all the tags in the playbook file
 - ansible-playbook tag-multi-tasks.yml -t inginx  //run a specific task based on the tag marking 
 - ansible-playbook tag-multi-tasks.yml --skip-tags <tag-name-toskip> //this will skip all the tags mentioned and run others
 
+#if any value needs hashing or some function controlled 
+-  password: "{{'pass123' | password_hash('sha512') }}"  #password needs to be hashed, we cant provide the text format
 
+#variables declaration 
+---
+  - name: this is first playbook
+    hosts: 192.168.211.102
+    vars:
+     - app: nginx
+
+    tasks:
+    - name: install package
+      apt:
+       name: "{{app}}"
+       state: present
+      tags: in-nginx          # adding a tag so that we run run tag scoped playbook not every task
+
+    - name: start the service
+      service:
+       name: "{{app}}"
+       state: started
+       enabled: true
+      tags: ss-nginx        # tagging here to mark the niginx start and enablie
+
+#declaring the hosts file IPs by name
+- orca ansible_host=192.168.211.102 //defining by name so that we do not have to pass the ip all over again 
+- ansible orca -m ping //this works with the server name in the inventory 
+
+#handlers in ansible 
+ tasks:
+  - name: enable the service in the firewalld
+    firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled   #enabled the service, any change in the fiewall needs reloading of the firewall
+    notify:
+      - reload firewalld  # this triggers the handlers i.e notifies the handler to run its tasks
+
+  handlers:  # handlers are always triggerd when required
+  - name: reload firewalld
+    service:
+       name:  firewalld
+       state: reloaded
+
+#conditions in ansible 
+---
+- name: handling conditions based on the platform
+  hosts: all
+
+  tasks:
+  - name: install httpd on red hat
+    yum:
+     name: httpd
+     state: present
+    when: ansible_od_family == "RedHat"
+
+
+  - name: install apche2 on ubuntu
+    apt:
+      name: apache2
+      state: present
+    when: ansible_os_family == "ubuntu"
+
+ 
+- ansible localhost -m setup //protuces all the properties variables available for ansible
+//gets all the modules and variable info 
+- ansible orca -m setup     //getting all the built in variables for the remote server
+
+#loops in ansible 
+
+ 
 
