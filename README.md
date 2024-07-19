@@ -199,6 +199,36 @@ e.g https://docs.ansible.com/ansible/2.9/modules/service_module.html#service-mod
 - ansible orca -m setup     //getting all the built in variables for the remote server
 
 #loops in ansible 
+ tasks:
+    - name: install package
+      apt:
+       name: "{{item}}"         # app changes to item here in the placeholder to replace each item in the loop
+       state: present
+      tags: set-one             # adding a tag so that we run run tag scoped playbook not every task
+      with_items: "{{apps}}"    # provide the listname to choose the items from in ordet to iterate
 
  
+#Ansible roles 
+a structured way of grouping together various functionalities and making it reuse and share command tasks 
+- ansible-galaxy init role-name  //to crate a role 
+- if we go to the /etc/ansible we will find hosts,ansible.config and roles here 
+- ansible-galaxy init apache2_setup //this will create a role under roles folder
+- ls 
+- this will have created some set of files under the role apache2_setup folder 
+- cd apache2_setup
+- ls -ltr 
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 vars 
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 templates
+	-rw-r--r-- 1 root root 1328 Jul 19 09:18 README.md
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 files
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 tests
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 tasks
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 defaults
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 meta
+	drwxr-xr-x 2 root root 4096 Jul 19 09:18 handlers
+- cd tasks //get inside the tasks folder 
+https://cn-ansibledoc.readthedocs.io/zh-cn/latest/galaxy/user_guide.html
+
+
+
 
